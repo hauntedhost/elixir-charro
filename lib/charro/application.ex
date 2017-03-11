@@ -10,7 +10,7 @@ defmodule Charro.Application do
 
     # match any host, any route
     dispatch_config = :cowboy_router.compile([
-      {:_, [{:_, Charro.CowboyHandler, []}]}
+      {:_, [{:_, Charro.CowboyHandler, [router: Charro.Router]}]}
     ])
 
     # start http server

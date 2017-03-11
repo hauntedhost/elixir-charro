@@ -5,10 +5,17 @@ defmodule Charro.CowboyHandler do
   end
 
   def handle(request, opts) do
+    router = Keyword.fetch!(opts, :router)
+
+    conn =
+      request
+      |> new_conn
+      |> router.call
+
     {:ok, reply} = :cowboy_req.reply(
-      200,
-      [{"content-type", "text/html"}],
-      "OK",
+      conn.resp_code,
+      conn.resp_headers,
+      conn.resp_body,
       request
     )
 
@@ -16,4 +23,9 @@ defmodule Charro.CowboyHandler do
   end
 
   def terminate(_reason, _request, _state), do: :ok
+
+  defp new_conn(request) do
+    {req_path, _request} = :cowboy_req.path(request)
+    %{req_path: req_path}
+  end
 end
