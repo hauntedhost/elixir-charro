@@ -1,19 +1,8 @@
 # Charro
 
-**TODO: Add description**
+![art depicting man on horse with family](charro.jpg)
 
-## Installation
+Toy web microframework in [Elixir](http://elixir-lang.org) to more deeply understand [Cowboy](https://github.com/ninenines/cowboy), [Ranch](https://github.com/ninenines/ranch), [Plug](https://github.com/elixir-lang/plug) and [Phoenix](http://www.phoenixframework.org).
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `charro` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [{:charro, "~> 0.1.0"}]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/charro](https://hexdocs.pm/charro).
-
+---
+[Sean Omlor](http://seanomlor.com)
