@@ -8,14 +8,20 @@ defmodule Charro.Application do
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
-    # Define workers and child supervisors to be supervised
-    children = [
-      # Starts a worker by calling: Charro.Worker.start_link(arg1, arg2, arg3)
-      # worker(Charro.Worker, [arg1, arg2, arg3]),
-    ]
+    # match any host, any route
+    dispatch_config = :cowboy_router.compile([
+      {:_, [{:_, Charro.CowboyHandler, []}]}
+    ])
 
-    # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
-    # for other strategies and supported options
+    # start http server
+    :cowboy.start_http(
+      :http,
+      100,
+      [{:port, 4000}],
+      [{:env, [{:dispatch, dispatch_config}]}]
+    )
+
+    children = []
     opts = [strategy: :one_for_one, name: Charro.Supervisor]
     Supervisor.start_link(children, opts)
   end
